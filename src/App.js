@@ -7,7 +7,6 @@ import SubmitForm from "./conponents/SubmitForm";
 const { Content, Footer } = Layout;
 
 function App() {
-  console.log(window.innerHeight);
   return (
     <div>
       <Row>

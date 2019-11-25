@@ -21,7 +21,13 @@ export default (state = initialState, action) => {
         message: action.payload
       };
     case actionTypes.LOGGEDIN:
-      return { ...state, id: action.payload, isSubscribe: true };
+      return {
+        ...state,
+        appid: action.payload.appid,
+        exitid: action.payload.exitid,
+        sleepid: action.payload.sleepid,
+        isSubscribe: true
+      };
     case actionTypes.LOGOUT:
       return { ...state, isSubscribe: false };
     default:

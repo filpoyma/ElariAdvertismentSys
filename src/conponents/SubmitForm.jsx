@@ -17,8 +17,8 @@ class NormalLoginForm extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
-        this.props.loggedIn(values.id);
+        //console.log("Received values of form: ", values);
+        this.props.loggedIn(values);
       }
     });
   };
@@ -32,20 +32,44 @@ class NormalLoginForm extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { id, isSubscribe, loading } = this.props;
+    const { appid, isSubscribe, loading } = this.props;
     return (
       <>
         {!isSubscribe && (
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
-              {getFieldDecorator("id", {
-                rules: [{ required: true, message: "Please input appid!" }]
+              {getFieldDecorator("appid", {
+                rules: [{ required: true, message: "Пожалуйста, введите app Id!" }]
               })(
                 <Input
                   prefix={
                     <Icon type="key" style={{ color: "rgba(0,0,0,.25)" }} />
                   }
                   placeholder="appid"
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("exitid", {
+                rules: [{ required: true, message: "Пожалуйста, введите exit Id!" }]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="key" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  placeholder="exitid"
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("sleepid", {
+                rules: [{ required: true, message: "Пожалуйста, введите sleep Id!" }]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="key" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  placeholder="sleepid"
                 />
               )}
             </Form.Item>
@@ -95,7 +119,7 @@ class NormalLoginForm extends Component {
           <p align="center">{this.props.message}</p>
         </div>
         {isSubscribe && this.state.start && (
-          <GetCreativeIntervalService id={id} />
+          <GetCreativeIntervalService appid={appid} />
         )}
       </>
     );
@@ -109,7 +133,7 @@ const WrappedNormalLoginForm = Form.create({ name: "normal_login" })(
 const mapStateToProps = state => {
   return {
     isSubscribe: state.isSubscribe,
-    id: state.id,
+    appid: state.appid,
     loading: state.loading,
     message: state.message
   };
@@ -117,7 +141,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loggedIn: id => dispatch(loggedInAC(id))
+    loggedIn: values => dispatch(loggedInAC(values))
   };
 };
 

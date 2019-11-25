@@ -1,8 +1,8 @@
-import { Menu, Icon, Button, Avatar } from "antd";
+import { Menu, Icon, Avatar } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const { SubMenu } = Menu;
+//const { SubMenu } = Menu;
 
 export default class MenuApp extends React.Component {
   state = {

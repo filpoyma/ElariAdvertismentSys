@@ -1,11 +1,11 @@
-import { API_BASE } from "./consts";
+import { API_BASE_ADS } from "./consts";
 
 export default class {
   constructor() {
-    this._apiBase = API_BASE;
+    this._apiBase = API_BASE_ADS;
   }
 
-  getCreative = async id => {
+  getCreative = async appid => {
     let nowDate = new Date();
     try {
       const res = await fetch(`${this._apiBase}`, {
@@ -20,7 +20,7 @@ export default class {
           adid: "",
           androidid: "",
           androidsdk: 1,
-          appid: parseInt(id, 10),
+          appid: parseInt(appid, 10),
           appkey: "",
           appstate: "foreground",
           carrier: "25000",
@@ -50,7 +50,8 @@ export default class {
           screenwidth: 320,
           timeofclick: new Date("0"),
           timeofreboot: new Date("0"),
-          timestamp: `${nowDate.getFullYear()}-${nowDate.getMonth()}-${nowDate.getDate()} ${nowDate.getHours()}:${nowDate.getMinutes()}:${nowDate.getSeconds()}`,
+          timestamp: `${nowDate.getFullYear()}-${nowDate.getMonth()}-${nowDate.getDate()} 
+                      ${nowDate.getHours()}:${nowDate.getMinutes()}:${nowDate.getSeconds()}`,
           useragent: window.navigator.userAgent,
           version: 1,
           wake: true
