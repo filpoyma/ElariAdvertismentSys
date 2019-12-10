@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 //import 'antd/dist/antd.css'
 import "./submit-form.css";
 import { loggedInAC } from "../redux/actions";
-import GetCreativeIntervalService from "./GetCreativeIntervalService";
 
 class NormalLoginForm extends Component {
   state = {
@@ -23,12 +22,12 @@ class NormalLoginForm extends Component {
     });
   };
 
-  onClickStartBtn = () => {
-    this.setState(state => ({ start: !state.start }));
-    if (this.state.start) this.setState({ buttonName: "Lets Start" });
-    else this.setState({ buttonName: "Stop" });
-    //this.setState((state) => (state.start = !state.start))
-  };
+  // onClickStartBtn = () => {
+  //   this.setState(state => ({ start: !state.start }));
+  //   if (this.state.start) this.setState({ buttonName: "Lets Start" });
+  //   else this.setState({ buttonName: "Stop" });
+  //   //this.setState((state) => (state.start = !state.start))
+  // };
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -49,18 +48,18 @@ class NormalLoginForm extends Component {
                 />
               )}
             </Form.Item>
-            <Form.Item>
-              {getFieldDecorator("exitid", {
-                rules: [{ required: true, message: "Пожалуйста, введите exit Id!" }]
-              })(
-                <Input
-                  prefix={
-                    <Icon type="key" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  placeholder="exitid"
-                />
-              )}
-            </Form.Item>
+            {/*<Form.Item>*/}
+              {/*{getFieldDecorator("exitid", {*/}
+                {/*rules: [{ required: true, message: "Пожалуйста, введите exit Id!" }]*/}
+              {/*})(*/}
+                {/*<Input*/}
+                  {/*prefix={*/}
+                    {/*<Icon type="key" style={{ color: "rgba(0,0,0,.25)" }} />*/}
+                  {/*}*/}
+                  {/*placeholder="exitid"*/}
+                {/*/>*/}
+              {/*)}*/}
+            {/*</Form.Item>*/}
             <Form.Item>
               {getFieldDecorator("sleepid", {
                 rules: [{ required: true, message: "Пожалуйста, введите sleep Id!" }]
@@ -99,28 +98,25 @@ class NormalLoginForm extends Component {
               >
                 Send ID
               </Button>
-              {/*Or <a href="#">register now!</a>*/}
             </Form.Item>
           </Form>
         )}
 
-        {isSubscribe && (
-          <Button
-            type="danger"
-            className="login-form-button"
-            loading={loading}
-            onClick={this.onClickStartBtn}
-          >
-            {this.state.buttonName}
-          </Button>
-        )}
+        {/*{isSubscribe && !this.state.start && (*/}
+          {/*<Button*/}
+            {/*type="danger"*/}
+            {/*className="login-form-button"*/}
+            {/*loading={loading}*/}
+            {/*onClick={this.onClickStartBtn}*/}
+          {/*>*/}
+            {/*{this.state.buttonName}*/}
+          {/*</Button>*/}
+        {/*)}*/}
 
-        <div>
-          <p align="center">{this.props.message}</p>
-        </div>
-        {isSubscribe && this.state.start && (
-          <GetCreativeIntervalService appid={appid} />
-        )}
+        {/*<div>*/}
+          {/*<p align="center">{this.props.message}</p>*/}
+        {/*</div>*/}
+
       </>
     );
   }

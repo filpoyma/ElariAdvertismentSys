@@ -1,4 +1,5 @@
 import { API_BASE_ADS } from "./consts";
+import moment from "moment";
 
 export default class {
   constructor() {
@@ -6,7 +7,7 @@ export default class {
   }
 
   getCreative = async appid => {
-    let nowDate = new Date();
+    let nowDate = moment().format("YYYY-MM-DD HH:mm:ss");
     try {
       const res = await fetch(`${this._apiBase}`, {
         method: "POST",
@@ -50,8 +51,7 @@ export default class {
           screenwidth: 320,
           timeofclick: new Date("0"),
           timeofreboot: new Date("0"),
-          timestamp: `${nowDate.getFullYear()}-${nowDate.getMonth()}-${nowDate.getDate()} 
-                      ${nowDate.getHours()}:${nowDate.getMinutes()}:${nowDate.getSeconds()}`,
+          timestamp: nowDate,
           useragent: window.navigator.userAgent,
           version: 1,
           wake: true

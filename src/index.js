@@ -10,7 +10,11 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 const composeEnhancers = composeWithDevTools({});
-const store = createStore(Reducer, composeEnhancers(applyMiddleware(Thunk)));
+const devTools =
+  process.env.NODE_ENV === "production"
+    ? applyMiddleware(Thunk)
+    : composeEnhancers(applyMiddleware(Thunk));
+const store = createStore(Reducer, devTools);
 
 ReactDOM.render(
   <Provider store={store}>

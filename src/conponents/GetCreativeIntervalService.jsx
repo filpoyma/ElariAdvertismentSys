@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setCreariveThunk } from "../redux/actions";
-import PopUp from "./PopUp";
+import ActionFrame from "./ActionFrame";
 
 class GetCreativeIntervalService extends Component {
 
@@ -10,17 +10,17 @@ class GetCreativeIntervalService extends Component {
   };
 
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log(
-  //     "prev/current creativeid -",
-  //     this.props.creativeid,
-  //     nextProps.creativeid
-  //   );
-  //   const { loaded } = this.props;
-  //   const isRendering = nextProps.creativeid !== this.props.creativeid;
-  //   if (loaded && !isRendering) this.onHandleSetInterval();
-  //   return isRendering; // не рендерить, если creativeid одинаковые (не рендерит, если return false)
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(
+      "prev/current creativeid -",
+      this.props.creativeid,
+      nextProps.creativeid
+    );
+    const { loaded } = this.props;
+    const isRendering = nextProps.creativeid !== this.props.creativeid;
+    if (loaded && !isRendering) this.onHandleSetInterval();
+    return isRendering; // не рендерить, если creativeid одинаковые (не рендерит, если return false)
+  }
 
   componentDidUpdate() {
     if (this.props.loaded) this.onHandleSetInterval();
@@ -49,12 +49,12 @@ class GetCreativeIntervalService extends Component {
   };
 
   render() {
-    //const {creativeid, sleepid} = this.props;
-    //const isSleep = (creativeid === sleepid);
+    const {creativeid, sleepid} = this.props;
+    const isSleep = (creativeid === sleepid);
+    console.log('isSleep', isSleep);
     return (
       <div>
-        <button onClick={() => this.setState(state => ({ isSleep: !state.isSleep }))}>Sleep</button>
-        <PopUp path={this.props.creative.htmlformat} sleep={this.state.isSleep}/>
+        <ActionFrame path={this.props.creative.htmlformat} isSleep={isSleep}/>
       </div>
     );
   }

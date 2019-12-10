@@ -1,8 +1,7 @@
 import { actionTypes } from "./types";
 import GetCreativeService from "../services/getCreativeService";
 import GetLogService from "../services/getLogService";
-import moment from 'moment'
-
+import moment from "moment";
 
 const { getCreative } = new GetCreativeService();
 const { getLog } = new GetLogService();
@@ -14,7 +13,10 @@ export const requestedCreativeAC = data => ({
   payload: data
 });
 
-export const loggedInAC = values => ({ type: actionTypes.LOGGEDIN, payload: values });
+export const loggedInAC = values => ({
+  type: actionTypes.LOGGEDIN,
+  payload: values
+});
 
 export const logOutAC = url => ({ type: actionTypes.LOGOUT });
 
@@ -23,8 +25,9 @@ export const requestedCreativeErrorAC = message => ({
   payload: message
 });
 
+//*********** Запрс креатива  ***********************
 export const setCreariveThunk = appid => async dispatch => {
-  let now = moment().format('L h:mma');
+  let now = moment().format("L h:mma");
   dispatch(requestCreativeAC());
   const creative = await getCreative(appid);
   if (!creative.err) {
@@ -34,18 +37,19 @@ export const setCreariveThunk = appid => async dispatch => {
   } else {
     dispatch(sendLogThunk(`[${now}] - ${creative.err}; `));
     console.log("creative.err", creative.err);
-    const message = "Ошибка ответа от сервера... Не закрывайте это окно.";
+    const message = "Ожидание ответа от сервера... Не закрывайте это окно.";
     dispatch(requestedCreativeErrorAC(message));
   }
 };
 
+//****************** Запись логов в кибану*******************
 export const sendLogThunk = data => async dispatch => {
-  const dataLog = `${data} ${(localStorage.getItem('dataErr') || '')}`;
+  const dataLog = `${data} ${localStorage.getItem("dataErr") || ""}`;
   const res = await getLog(dataLog);
-  console.log('dataLog - ', dataLog);
+  console.log("dataLog - ", dataLog);
   if (res.err) {
-    localStorage.setItem('dataErr', dataLog);
+    localStorage.setItem("dataErr", dataLog);
   } else {
-    localStorage.removeItem('dataErr');
+    localStorage.removeItem("dataErr");
   }
 };

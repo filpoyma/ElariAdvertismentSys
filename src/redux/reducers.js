@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         appid: action.payload.appid,
-        exitid: action.payload.exitid,
+        //exitid: action.payload.exitid,
         sleepid: action.payload.sleepid,
         isSubscribe: true
       };

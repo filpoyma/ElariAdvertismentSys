@@ -1,6 +1,6 @@
 export const initialState = {
   appid: "",
-  exitid: '',
+  //exitid: '',
   sleepid: '',
   isSubscribe: false,
   creative: {},
