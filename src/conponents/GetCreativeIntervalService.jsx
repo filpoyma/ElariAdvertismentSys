@@ -11,11 +11,7 @@ class GetCreativeIntervalService extends Component {
 
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(
-      "prev/current creativeid -",
-      this.props.creativeid,
-      nextProps.creativeid
-    );
+    console.log("prev/current creativeid -", this.props.creativeid, nextProps.creativeid);
     const { loaded } = this.props;
     const isRendering = nextProps.creativeid !== this.props.creativeid;
     if (loaded && !isRendering) this.onHandleSetInterval();
@@ -23,7 +19,10 @@ class GetCreativeIntervalService extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.loaded) this.onHandleSetInterval();
+    if (this.props.loaded) {
+      this.onHandleSetInterval();
+      //this.saveCreative(this.props.creative.htmlformat);
+    }
   }
 
   componentDidMount() {
@@ -47,6 +46,18 @@ class GetCreativeIntervalService extends Component {
       );
     }
   };
+
+  saveCreative(absoluteUrl){
+      let link = document.createElement('a');
+      link.href = absoluteUrl;
+      link.download = 'true';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    alert('save creativeeeeeeeeee')
+
+    //delete link;
+  }
 
   render() {
     const {creativeid, sleepid} = this.props;

@@ -7,7 +7,7 @@ export default class {
 
   getLog = async data => {
     try {
-      await fetch(`${API_BASE_LOG}`, {
+      await fetch(`${this._apiBase}`, {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 //import 'antd/dist/antd.css'
 import "./submit-form.css";
 import { loggedInAC } from "../redux/actions";
+import FormLayout from "../containers/FormLayout";
 
 class NormalLoginForm extends Component {
   state = {
@@ -33,7 +34,7 @@ class NormalLoginForm extends Component {
     const { getFieldDecorator } = this.props.form;
     const { appid, isSubscribe, loading } = this.props;
     return (
-      <>
+      <FormLayout>
         {!isSubscribe && (
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
@@ -117,7 +118,7 @@ class NormalLoginForm extends Component {
           {/*<p align="center">{this.props.message}</p>*/}
         {/*</div>*/}
 
-      </>
+      </FormLayout>
     );
   }
 }

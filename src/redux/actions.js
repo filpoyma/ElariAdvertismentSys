@@ -27,7 +27,7 @@ export const requestedCreativeErrorAC = message => ({
 
 //*********** Запрс креатива  ***********************
 export const setCreariveThunk = appid => async dispatch => {
-  let now = moment().format("L h:mma");
+  const now = moment().format("L h:mma");
   dispatch(requestCreativeAC());
   const creative = await getCreative(appid);
   if (!creative.err) {

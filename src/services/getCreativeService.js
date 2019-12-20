@@ -6,7 +6,7 @@ export default class {
     this._apiBase = API_BASE_ADS;
   }
 
-  getCreative = async appid => {
+  getCreative = async (appid) => {
     let nowDate = moment().format("YYYY-MM-DD HH:mm:ss");
     try {
       const res = await fetch(`${this._apiBase}`, {
