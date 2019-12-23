@@ -12,7 +12,7 @@ console.log('Launch Daemon for ElariAdvertisment');
 arg = process.argv.slice(2);
 
 const chromeLauncher = (
-    path = 'https://elariadv.herokuapp.com',
+    path = 'http://elariadv.herokuapp.com',
     screenMode = '--start-fullscreen', // also may --kiosk
     browserName = 'google-chrome'
     ) => {
